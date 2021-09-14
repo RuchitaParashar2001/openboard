@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       *{margin : 0px;
+       }
+    </style>
+</head>
+<body>
+    <canvas class = "board"></canvas>
+    <script>
+        let canvas = document.querySelector(".board");
+        canvas.height = window.innerHeight;
+        canvas.width = window.innerWidth;
+        let tool = canvas.getContext("2d");
+        let imx = null;
+        let imy = null;
+        let Imd = false;
+        tool.strokeStyle = "blue";
+        window.addEventListener("mousedown",function(obj){
+            imx = obj.clientX;
+            imy = obj.clientY;
+            tool.beginPath();
+            tool.moveTo(imx,imy);
+            Imd = true;
+            console.log("Mouse down occured");
+        })
+
+      window.addEventListener("mousemove",function(e){
+                let fmx = e.clientX;
+                let fmy = e.clientY;
+                if(Imd==true)
+                {
+                    tool.lineTo(fmx,fmy);
+                tool.stroke();
+                console.log("mouse moved")
+                }
+                
+            })
+        window.addEventListener("mouseup",function(){
+            Imd = false;
+        })
+    </script>
+</body>
+</html>
